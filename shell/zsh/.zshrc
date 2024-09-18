@@ -1,8 +1,23 @@
 # ~~~~~~~~~~~~~~~ Load plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
-source <(fzf --zsh)
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
+else
+  echo "Starship not found, skipping initialization."
+fi
+
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init zsh)"
+  alias cd='z'
+else
+  echo "zoxide not found, skipping initialization."
+fi
+
+if command -v fzf &> /dev/null; then
+  source <(fzf --zsh)
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+else
+  echo "fzf not found, skipping fzf initialization."
+fi
 
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
