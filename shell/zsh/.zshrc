@@ -1,27 +1,3 @@
-# ~~~~~~~~~~~~~~~ Load plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if command -v starship &> /dev/null; then
-  eval "$(starship init zsh)"
-else
-  echo "Starship not found, skipping initialization."
-fi
-
-if command -v zoxide &> /dev/null; then
-  eval "$(zoxide init zsh)"
-  alias cd='z'
-else
-  echo "zoxide not found, skipping initialization."
-fi
-
-if command -v fzf &> /dev/null; then
-  source <(fzf --zsh)
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-else
-  echo "fzf not found, skipping fzf initialization."
-fi
-
-source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 # ~~~~~~~~~~~~~~~ Environment Variables ~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Set to superior editing mode
@@ -51,6 +27,30 @@ typeset -U path
 path=($^path(N-/))
 
 export PATH
+
+# ~~~~~~~~~~~~~~~ Load plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
+else
+  echo "Starship not found, skipping initialization."
+fi
+
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init zsh)"
+  alias cd='z'
+else
+  echo "zoxide not found, skipping initialization."
+fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if command -v fzf &> /dev/null; then
+  source <(fzf --zsh)
+else
+  echo "fzf not found, skipping fzf initialization."
+fi
+
+source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # ~~~~~~~~~~~~~~~ Configurations ~~~~~~~~~~~~~~~~~
 
