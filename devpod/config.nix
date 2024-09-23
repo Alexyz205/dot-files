@@ -3,6 +3,7 @@
     devPackages = pkgs.buildEnv {
       name = "alexyz";
       paths = [
+        zsh
         starship
         ripgrep
         fzf
