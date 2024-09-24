@@ -54,7 +54,7 @@ nix-env -iA nixpkgs.devPackages
 echo "Nix packages installed successfully"
 
 # Change the default shell to Zsh
-sudo chsh -s $(which zsh) $(whoami) || {
+chsh -s $(which zsh) $(whoami) || {
     echo "Error: Failed to change the default shell to Zsh."
     exit 1
 }
