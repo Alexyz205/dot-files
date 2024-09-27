@@ -10,6 +10,7 @@
         zoxide
         lazygit
         neovim
+        nodejs_22
       ];
     };
   };
