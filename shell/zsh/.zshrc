@@ -96,6 +96,7 @@ alias e='exit'
 alias gp='git pull'
 alias gs='git status'
 alias lg='lazygit'
+alias ld='lazydocker'
 
 # Devpod
 
