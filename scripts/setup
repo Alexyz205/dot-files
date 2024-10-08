@@ -33,10 +33,12 @@ create_symlinks() {
 }
 
 common_directories=(
+    $CONFIG_DIR
 )
 
 common_items=(
   "alacritty:$CONFIG_DIR/alacritty"
+  "nix:$CONFIG_DIR/nix"
   "tmux/.tmux.conf:$HOME/.tmux.conf"
   "tmux/.tmux:$HOME/.tmux"
   "nvim:$CONFIG_DIR/nvim"

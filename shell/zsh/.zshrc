@@ -101,3 +101,7 @@ alias ld='lazydocker'
 # Devpod
 
 alias ds='devpod ssh'
+
+# Nix
+
+alias nr='nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake ~/repos/dotfiles/nix#Alexis-MBA'
