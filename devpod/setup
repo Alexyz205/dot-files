@@ -123,8 +123,6 @@ common_directories=(
 
 common_items=(
   "devpod/config.nix:"$XDG_CONFIG_HOME"/nixpkgs/config.nix"
-  "tmux/.tmux.conf:$HOME/.tmux.conf"
-  "tmux/.tmux:$HOME/.tmux"
   "nvim:$CONFIG_DIR/nvim"
   "starship.toml:$CONFIG_DIR/starship.toml"
   "shell/zsh:$CONFIG_DIR/zsh"

@@ -8,7 +8,6 @@
         ripgrep
         fzf
         zoxide
-        tmux
         neovim
         lazygit
         nodejs_22
