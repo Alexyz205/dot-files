@@ -33,12 +33,98 @@ create_symlinks() {
   done
 }
 
+is_installed() {
+    dpkg -l | grep -q "$1"
+}
+
+install_nix_deps() {
+
+# Check if we are on an Ubuntu system
+if grep -q "Ubuntu" /etc/os-release; then
+    echo "You are on Ubuntu."
+
+    # Update package list
+    echo "Updating package list..."
+    apt update -y
+
+    # Check if curl is installed, if not install it
+    if is_installed "curl"; then
+        echo "curl is already installed."
+    else
+        echo "Installing curl..."
+        apt install -y curl
+    fi
+
+    # Check if xz-utils is installed, if not install it
+    if is_installed "xz-utils"; then
+        echo "xz-utils is already installed."
+    else
+        echo "Installing xz-utils..."
+        apt install -y xz-utils
+    fi
+
+    echo "Installation checks complete."
+else
+    echo "You are not on Ubuntu. Exiting script."
+    exit 1
+fi
+}
+
+install_nix() {
+  # Check if the script is run as root
+  if [ "$EUID" -ne 0 ]; then
+    echo "This script must be run as root. Please run it again with sudo."
+    exit 1
+  fi
+
+  # Check if nix is already installed
+  if command -v nix >/dev/null 2>&1; then
+    echo "Nix is already installed."
+  else
+    echo "Nix is not installed. Proceeding with installation..."
+    install_nix_deps
+    # Install nix using the official installation script
+    sh <(curl -L https://nixos.org/nix/install) --daemon
+    if [ $? -eq 0 ]; then
+      echo "Nix has been successfully installed."
+      source_shell
+    else
+      echo "Nix installation failed."
+      exit 1
+    fi
+  fi
+}
+
+change_shell_to_zsh() {
+    local user=$1
+
+    # Change the default shell to Zsh for the given user using chsh
+    chsh -s $(which zsh) "$user" || {
+        echo "Error: Failed to change the default shell to Zsh for user $user."
+        exit 1
+    }
+
+    echo "Default shell changed to Zsh successfully for user $user."
+}
+
+source_shell() {
+  # Source the nix environment automatically
+  # Detect the shell being used (bash or zsh) and source the correct profile
+  if [ -n "$BASH_VERSION" ]; then
+    source /etc/bashrc || source ~/.bashrc
+  elif [ -n "$ZSH_VERSION" ]; then
+    source ~/.zshrc
+  fi
+}
+
 common_directories=(
     "$XDG_CONFIG_HOME/nixpkgs"
 )
 
 common_items=(
   "devpod/config.nix:"$XDG_CONFIG_HOME"/nixpkgs/config.nix"
+  "tmux/.tmux.conf:$HOME/.tmux.conf"
+  "tmux/.tmux:$HOME/.tmux"
   "nvim:$CONFIG_DIR/nvim"
   "starship.toml:$CONFIG_DIR/starship.toml"
   "shell/zsh:$CONFIG_DIR/zsh"
@@ -49,15 +135,13 @@ common_items=(
 create_directories "${common_directories[@]}"
 create_symlinks "${common_items[@]}"
 
+install_nix
+
 # Install Nix packages from config.nix
 nix-env -iA nixpkgs.devPackages
+source_shell
 echo "Nix packages installed successfully"
 
-# Change the default shell to Zsh
-chsh -s $(which zsh) $(whoami) || {
-    echo "Error: Failed to change the default shell to Zsh."
-    exit 1
-}
+change_shell_to_zsh "$(whoami)"
 
-echo "Default shell changed to Zsh successfully."
 exit 0

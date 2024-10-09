@@ -8,9 +8,11 @@
         ripgrep
         fzf
         zoxide
-        lazygit
+        tmux
         neovim
+        lazygit
         nodejs_22
+        cargo
       ];
     };
   };
