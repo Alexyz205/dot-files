@@ -50,10 +50,15 @@
           dock.tilesize = 30;
           dock.orientation = "left";
           dock.persistent-apps = [
-            "System/Applications/Alacritty.app"
-            "System/Applications/Obsidian.app"
+            "/Applications/Alacritty.app"
+            "/Applications/Docker.app"
+            "/Applications/Obsidian.app"
+            "/Applications/ChatGPT.app"
+            "System/Applications/Safari.app"
             "System/Applications/Mail.app"
             "System/Applications/Calendar.app"
+            "System/Applications/Reminders.app"
+            "System/Applications/System Settings.app"
           ];
           finder.FXPreferredViewStyle = "clmv";
           loginwindow.GuestEnabled = false;
