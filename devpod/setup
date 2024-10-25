@@ -39,7 +39,6 @@ is_installed() {
 }
 
 install_nix_deps() {
-
 # Check if we are on an Ubuntu system
 if grep -q "Ubuntu" /etc/os-release; then
     echo "You are on Ubuntu."
@@ -72,17 +71,17 @@ fi
 }
 
 install_nix() {
-  # Check if the script is run as root
-  if [ "$EUID" -ne 0 ]; then
-    echo "This script must be run as root. Please run it again with sudo."
-    exit 1
-  fi
-
   # Check if nix is already installed
   if command -v nix >/dev/null 2>&1; then
     echo "Nix is already installed."
   else
     echo "Nix is not installed. Proceeding with installation..."
+    # Check if the script is run as root
+    if [ "$EUID" -ne 0 ]; then
+      echo "This script must be run as root. Please run it again with sudo."
+      exit 1
+    fi
+
     install_nix_deps
     # Install nix using the official installation script
     yes | sh <(curl -L https://nixos.org/nix/install) --daemon
