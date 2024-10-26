@@ -33,6 +33,7 @@
           enable = true;
           casks = [
             "docker"
+            "visual-studio-code"
             "chatgpt"
             "alacritty"
             "obsidian"
@@ -51,10 +52,11 @@
           dock.orientation = "left";
           dock.persistent-apps = [
             "/Applications/Alacritty.app"
+            "/Applications/Visual Studio Code.app"
             "/Applications/Docker.app"
             "/Applications/Obsidian.app"
             "/Applications/ChatGPT.app"
-            "System/Applications/Safari.app"
+            "/Applications/Safari.app"
             "System/Applications/Mail.app"
             "System/Applications/Calendar.app"
             "System/Applications/Reminders.app"
