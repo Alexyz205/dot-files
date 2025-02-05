@@ -107,5 +107,7 @@ alias ds='devpod ssh'
 alias dru='docker run -it --rm -v ~/repos/dotfiles:/root/dotfiles ubuntu bash'
 
 # Nix
-
 alias nr='nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake ~/repos/dotfiles/nix#Alexis-MBA'
+
+# SSH
+alias sshhs='ssh alexyz@homeserveralexyz'
