@@ -13,6 +13,7 @@ export REPOS="$HOME/repos"
 export GITUSER="alexyz205"
 export GHREPOS="$REPOS/github.com/$GITUSER"
 export DOTFILES="$GHREPOS/dotfiles"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # ~~~~~~~~~~~~~~~ Path configuration ~~~~~~~~~~~~~~~~~~~~~~~~
 

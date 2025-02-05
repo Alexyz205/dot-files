@@ -37,7 +37,7 @@ common_directories=(
 )
 
 common_items=(
-  "alacritty:$CONFIG_DIR/alacritty"
+  "ghostty:$CONFIG_DIR/ghostty"
   "nix:$CONFIG_DIR/nix"
   "tmux/.tmux.conf:$HOME/.tmux.conf"
   "tmux/.tmux:$HOME/.tmux"
