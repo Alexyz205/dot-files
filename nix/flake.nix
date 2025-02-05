@@ -20,7 +20,6 @@
           pkgs.ripgrep
           pkgs.fzf
           pkgs.zoxide
-          pkgs.devpod
           pkgs.tmux
           pkgs.neovim
           pkgs.lazygit
