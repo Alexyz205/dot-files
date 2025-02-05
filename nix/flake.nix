@@ -32,10 +32,10 @@
         homebrew = {
           enable = true;
           casks = [
+            "ghostty"
             "docker"
             "visual-studio-code"
             "chatgpt"
-            "alacritty"
             "obsidian"
           ];
           onActivation.cleanup = "zap";
@@ -51,7 +51,7 @@
           dock.tilesize = 30;
           dock.orientation = "left";
           dock.persistent-apps = [
-            "/Applications/Alacritty.app"
+            "/Applications/Ghostty.app"
             "/Applications/Visual Studio Code.app"
             "/Applications/Docker.app"
             "/Applications/Obsidian.app"
@@ -69,7 +69,7 @@
         };
 
         fonts.packages = [
-          (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+          pkgs.nerd-fonts.jetbrains-mono
         ];
         # Auto upgrade nix package and the daemon service.
         services.nix-daemon.enable = true;
