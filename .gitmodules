@@ -1,6 +1,3 @@
-[submodule "alacritty"]
-	url = git@github.com:Alexyz205/alacritty.git
-	path = alacritty
 [submodule "nvim"]
 	url = git@github.com:Alexyz205/nvim.git
 	path = nvim
